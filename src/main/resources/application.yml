@@ -1,0 +1,4 @@
+spring:
+  data:
+    cassandra:
+      jmx-enabled: false
