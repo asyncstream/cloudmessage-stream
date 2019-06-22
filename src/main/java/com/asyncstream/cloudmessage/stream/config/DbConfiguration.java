@@ -22,13 +22,7 @@ import java.util.Arrays;
 import java.util.Date;
 
 @Configuration
-@PropertySource("classpath:config/db.properties")
 public class DbConfiguration extends AbstractCassandraConfiguration {
-
-    private static final String CLUSTER_NAME = "cloudmessagecluster";
-
-    @Autowired
-    private Environment env;
 
     @Override
     protected String getKeyspaceName() {
@@ -42,9 +36,6 @@ public class DbConfiguration extends AbstractCassandraConfiguration {
 
         CassandraClusterFactoryBean cluster = super.cluster();
         cluster.setJmxReportingEnabled(false);
-        cluster.setClusterName(CLUSTER_NAME);
-        cluster.setContactPoints(env.getProperty("cassandra.dev.host"));
-        cluster.setPort(Integer.parseInt(env.getProperty("cassandra.dev.cql.port")));
         return cluster;
     }
 
